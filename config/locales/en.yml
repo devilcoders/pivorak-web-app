@@ -79,6 +79,8 @@ en:
     visitors: Visitors
     attendees: Attendees
     send_confirmations: Send Confirmations
+    count_max: Count / Max
+    verified_newbies: Verified / Newbies
     index:
       visitors:
         requested: Requested

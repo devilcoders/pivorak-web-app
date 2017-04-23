@@ -46,4 +46,8 @@ class Event < ApplicationRecord
   def limit_newbies
     limit_total - limit_verified
   end
+
+  def stats(status = nil)
+    @stats ||= Event::Stats.new(self, status)
+  end
 end

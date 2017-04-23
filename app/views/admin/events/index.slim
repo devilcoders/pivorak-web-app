@@ -9,7 +9,8 @@ table.ui.very.basic.table
         th = t 'words.title'
       th.center.aligned = t 'words.status'
       th.center.aligned = t 'events.visitors'
-      th.center.aligned = 'Verified / Newbies'
+      th.center.aligned = t 'events.count_max'
+      th.center.aligned = t 'events.verified_newbies'
       th = t 'words.date'
       th.actions colspan="2"
 
@@ -17,13 +18,21 @@ table.ui.very.basic.table
     - events.each do |event|
       tr
         td.center.aligned = bool_icon(event.published?)
+
         td = resource_link(event, target: '_blank')
+
         td.center.aligned = event_status_label(event)
+
+        td.center.aligned style="width: 50%"
+          = render 'admin/events/visitors_stat', event: event
+
         td.center.aligned
-          .row-chart
-            = column_chart(event_visitors(event), height: '100px', width: '400px')
+          = event_status_count_max_data(event.stats.real_count, event.stats.max)
+
         td.center.aligned = event_verified_user_data(event)
+
         td = format_timestamp(event.started_at, time: false)
+
         td.right.aligned
           = controls do
             = admin_edit_resource_link(event)

@@ -1,0 +1,6 @@
+= event.stats.inspect
+
+- unless event.planned?
+  .ui.progress.success
+    .bar style="width: #{event.stats.progress}%"
+      .progress = "#{event.stats.progress}%"
